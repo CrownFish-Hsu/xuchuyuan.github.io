@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>PHP个人框架PAF开发(1) | Grow With Time</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="个人框架开发(PAF = PHP Another Framework)
+框架目录结构
+
+I.第一部分：基于VC的输入输出：
+配置文件 paf.conf定义全局变量```phpdefine(‘PAF_PATH’, ‘paf’);
+
+//配置模板版本define(‘PAF_VIEW_PATH’, ‘default’);
+define(‘PAF_VIEW_HEADER’, ‘header’);defin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP个人框架PAF开发(1)">
+<meta property="og:url" content="http://xuchuyuan.github.io/2016/03/17/Paf/index.html">
+<meta property="og:site_name" content="Grow With Time">
+<meta property="og:description" content="个人框架开发(PAF = PHP Another Framework)
+框架目录结构
+
+I.第一部分：基于VC的输入输出：
+配置文件 paf.conf定义全局变量```phpdefine(‘PAF_PATH’, ‘paf’);
+
+//配置模板版本define(‘PAF_VIEW_PATH’, ‘default’);
+define(‘PAF_VIEW_HEADER’, ‘header’);defin">
+<meta property="og:image" content="http://7xo7qs.com1.z0.glb.clouddn.com/paf1.png?imageView2/1/w/200/h/300">
+<meta property="og:image" content="http://7xo7qs.com1.z0.glb.clouddn.com/db.png?imageView2/1/w/250/h/200">
+<meta property="og:updated_time" content="2016-03-17T07:41:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP个人框架PAF开发(1)">
+<meta name="twitter:description" content="个人框架开发(PAF = PHP Another Framework)
+框架目录结构
+
+I.第一部分：基于VC的输入输出：
+配置文件 paf.conf定义全局变量```phpdefine(‘PAF_PATH’, ‘paf’);
+
+//配置模板版本define(‘PAF_VIEW_PATH’, ‘default’);
+define(‘PAF_VIEW_HEADER’, ‘header’);defin">
+<meta name="twitter:image" content="http://7xo7qs.com1.z0.glb.clouddn.com/paf1.png?imageView2/1/w/200/h/300">
+  
+    <link rel="alternative" href="/atom.xml" title="Grow With Time" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/assert/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">chuyuan.xu</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">一步一步向上爬</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/xuchuyuan" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/xuchuyuan" title="weibo">weibo</a>
+					        
+								<a class="douban" target="_blank" href="http://www.douban.com/people/73062008/" title="douban">douban</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xuchuyuan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Composer/" style="font-size: 15px;">Composer</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/LINUX/" style="font-size: 10px;">LINUX</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mdba.cn/">DBA的卢浮宫</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">chuyuan.xu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/assert/avatar.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">chuyuan.xu</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一步一步向上爬</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/xuchuyuan" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/xuchuyuan" title="weibo">weibo</a>
+			        
+						<a class="douban" target="_blank" href="http://www.douban.com/people/73062008/" title="douban">douban</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xuchuyuan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Paf" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/17/Paf/" class="article-date">
+  	<time datetime="2016-03-17T07:41:21.000Z" itemprop="datePublished">2016-03-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP个人框架PAF开发(1)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/TECH/">TECH</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="个人框架开发-PAF-PHP-Another-Framework"><a href="#个人框架开发-PAF-PHP-Another-Framework" class="headerlink" title="个人框架开发(PAF = PHP Another Framework)"></a>个人框架开发(PAF = PHP Another Framework)</h3><ul>
+<li><h4 id="框架目录结构"><a href="#框架目录结构" class="headerlink" title="框架目录结构"></a>框架目录结构</h4><img src="http://7xo7qs.com1.z0.glb.clouddn.com/paf1.png?imageView2/1/w/200/h/300" alt=""></li>
+</ul>
+<h5 id="I-第一部分：基于VC的输入输出："><a href="#I-第一部分：基于VC的输入输出：" class="headerlink" title="I.第一部分：基于VC的输入输出："></a>I.第一部分：基于VC的输入输出：</h5><ul>
+<li>配置文件 paf.conf<br>定义全局变量<br>```php<br>define(‘PAF_PATH’, ‘paf’);</li>
+</ul>
+<p>//配置模板版本<br>define(‘PAF_VIEW_PATH’, ‘default’);</p>
+<p>define(‘PAF_VIEW_HEADER’, ‘header’);<br>define(‘PAF_VIEW_FOOTER’, ‘footer’);</p>
+<p>//模板后缀定义<br>define(‘PAF_VIEW_EXT’, ‘.php’);</p>
+<pre><code>- 入口文件 index.php
+参数解析，解析出controller和action，找到对应的文件。
+核心代码：
+```php
+$_controller = isset($_GET[&#39;controller&#39;]) ? $_GET[&#39;controller&#39;] : &#39;&#39;;
+$_action     = isset($_GET[&#39;action&#39;]) ? $_GET[&#39;action&#39;] : &#39;&#39;;
+$_controller_path = PAF_PATH.&#39;/MVC/controller/&#39;.$_controller.&#39;.inc&#39;;
+$_init_controller = new $_controller();
+$_init_controller-&gt;$_action();
+$_init_controller-&gt;run();
+</code></pre><ul>
+<li><p>渲染文件<br>\MVC\controller\{$_controller}.inc(进入controller)</p>
+<pre><code class="php">class {$_action} extends _Master {
+  public function {$_action}() {
+      $this-&gt;setView({$view_name});
+      //设置变量
+      $this-&gt;setVar(&#39;website&#39;, &#39;github.io&#39;);
+  }
+}
+</code></pre>
+<p>\MVC\controller_Master.inc(基类)</p>
+<pre><code class="php">abstract class _Master {
+  var $_view;
+  var $_vars = [];
+
+  function setView($viewName) {
+      $this-&gt;_view = $viewName;
+  }
+
+  function getView() {
+      return &#39;\MVC\VIEW\default\{$view_name}.php&#39;;
+  }
+
+  function setVar($name, $value) {
+      $this-&gt;_vars[$name] = $value;
+  }
+
+  function run() {
+      //解包，把变量解析
+      extract($this-&gt;_vars);
+
+      //加载头部  加载尾部
+
+      //加载模板
+      include($this-&gt;getView());
+  }
+}
+</code></pre>
+<p>\MVC\View\default{$view_name}</p>
+<pre><code class="php">echo $website;    //输出github.io
+</code></pre>
+</li>
+</ul>
+<p>II.第二部分：加入Model，连接Mysql</p>
+<ul>
+<li>前提：需要类库<a href="https://sourceforge.net/projects/adodb/files/adodb-php5-only/" target="_blank" rel="external">adodb(下载)</a><br>[adodb与mysqli, pdo功能相同，adodb是php编写的，不需要安装额外的扩展，可以操作多种数据库]</li>
+<li>解压后提取出drives文件夹和下图文件，一起放入\Library\DataBase下，其他文件不需要</li>
+<li><p>在\Library\DataBase文件夹下新建myDataBase.inc.php，作为数据库调用类<br><img src="http://7xo7qs.com1.z0.glb.clouddn.com/db.png?imageView2/1/w/250/h/200" alt=""></p>
+</li>
+<li><p>myDataBase类</p>
+<pre><code class="php">  require(&#39;adodb.inc.php&#39;);
+
+  class myDataBase {
+
+      public $_dbAddr = &#39;db_address&#39;;
+      public $_dbName = &#39;db_name&#39;;
+      public $_dbUser = &#39;username&#39;;
+      public $_dbPwd  = &#39;password&#39;;
+      public $_db     = false;    //db实例
+
+      //构造函数
+      function myDataBase() {
+          $this-&gt;initConnect();
+      }
+
+      //析构函数
+      function __destruct() {
+          if($this-&gt;_db &amp;&amp; $this-&gt;_db-&gt;IsConnected()) {
+              $this-&gt;_db-&gt;disconnect();
+              unset($this-&gt;_db);
+          }
+      }
+
+      function initConnect() {
+          $this-&gt;_db = NewADOConnection(&#39;mysqli&#39;);
+          $this-&gt;_db-&gt;Connect($this-&gt;_dbAddr, $this-&gt;_dbUser, $this-&gt;_dbPwd, $this-&gt;_dbName);
+          $this-&gt;_db-&gt;Query(&#39;set names utf8&#39;);
+          $this-&gt;_db-&gt;SetFetchMode(ADODB_FETCH_ASSOC);
+      }
+
+      //执行sql，返回数组
+      function execForArray ($sql) {
+          $result = $this-&gt;_db-&gt;Execute($sql);
+          if($result) {
+              $returnArray = [];
+              while(!$result-&gt;EOF) {
+                  $returnArray[] = $result-&gt;fields;
+                  $result-&gt;MoveNext();
+              }
+              return $returnArray;
+          }else {
+              return false;
+          }
+      }
+}
+</code></pre>
+</li>
+<li><p>Model基类(_Model.inc)，解析$where参数，拼接sql</p>
+<pre><code class="php">  abstract class _Model {
+      public $_view_name = &#39;&#39;;    //表名
+      public $_id        = &#39;1075866671&#39;;        //默认id值
+      public $_id_key    = &#39;id&#39;;    //主键key
+
+      function load($where = &#39;&#39;) {
+          if(!$this-&gt;_view_name || $this-&gt;_id == 0) {
+              return;
+          }
+
+          //对象属性解析，属性值和数据库表字段保持一致
+          $vars = get_object_vars($this);
+          $sql  = &#39;&#39;;
+          foreach ($vars as $key =&gt; $value) {
+              if(trim($value) == &#39;&#39;) {
+                  if($sql != &#39;&#39;) {
+                      $sql .= &#39;,&#39;;
+                  }
+                  $sql .= $key;
+              }
+          }
+
+          if(!$sql) {
+              return;
+          }
+
+          $sql = &#39;select &#39;.$sql.&#39; from &#39;.$this-&gt;_view_name.&#39; where &#39;;
+          if(!$where) {
+              $sql .= $this-&gt;_id_key.&#39; = &#39;.$this-&gt;_id;
+          }else {
+              $sql .= $where;
+          }
+
+          require(PAF_PATH.&#39;/Library/DataBase/myDataBase.php&#39;);
+          $db  = new myDataBase();
+          $ret = $db-&gt;execForArray($sql);
+          if($ret &amp;&amp; 1 == count($ret)) {
+              $ret       = $ret[0];
+              $var_keys = array_keys($vars);
+              foreach ($ret as $key =&gt; $value) {
+                  if(in_array($key, $var_keys)) {
+                      $this-&gt;$key = $value;
+                  }
+              }
+          }
+      }
+  }
+</code></pre>
+</li>
+<li><p>Controller调用Model</p>
+<pre><code class="php">class {$_action} extends _Master {
+
+  public function {$_action}() {
+      $this-&gt;setView({$view_name});
+
+      //加载Model，后面可以封装到公共文件中
+      require(PAF_PATH.&#39;/MVC/Model/_Model.inc&#39;);
+
+      //$modelName 需要extends _Master.inc，$modelName的属性还需要和表字段名一致，保证解析sql不用转化
+      {$objModel} = new {$modelName}();
+      {$objModel}-&gt;_view_name = &#39;{$table_name}&#39;;
+      {$objModel}-&gt;_id        = &#39;{$id_number}&#39;;
+
+      {$objModel}-&gt;load();
+      $this-&gt;setVar(&#39;UserModel&#39;, {$objModel});
+  }
+}
+</code></pre>
+</li>
+<li><p>这样可以在模板中获得变量，直接输出变量的属性值</p>
+</li>
+</ul>
+<p>一个最简单的MVC框架骨骼就完成了，以后需要的是不断在框架上加功能，包括路由重定向，缓存，SDK，API的提供。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/17/PHP-FPM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          升级PHP，遇到的PHP-FPM问题
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 chuyuan.xu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>MySQL5.7.13 源码非编译安装 | Grow With Time</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="###MySQL5.7下载地址
+前提：阿里云服务器是CentOS6.5版本，下载的时候看清楚Select Platform，新的MySQL有600M，比之前多出一倍。
+下载MySQL，完成解压，解压后将文件夹移到/usr/local/下#####有人推荐axel下载多线程，支持断点，但是centos下没有，需要下载成yum插件，debian系统可以直接安装。尝试下载，没有反应，可能国外服务器不稳定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL5.7.13 源码非编译安装">
+<meta property="og:url" content="http://xuchuyuan.github.io/2016/07/22/MySQL-Install/index.html">
+<meta property="og:site_name" content="Grow With Time">
+<meta property="og:description" content="###MySQL5.7下载地址
+前提：阿里云服务器是CentOS6.5版本，下载的时候看清楚Select Platform，新的MySQL有600M，比之前多出一倍。
+下载MySQL，完成解压，解压后将文件夹移到/usr/local/下#####有人推荐axel下载多线程，支持断点，但是centos下没有，需要下载成yum插件，debian系统可以直接安装。尝试下载，没有反应，可能国外服务器不稳定">
+<meta property="og:image" content="http://7xo7qs.com1.z0.glb.clouddn.com/mysql_data.png">
+<meta property="og:image" content="http://7xo7qs.com1.z0.glb.clouddn.com/initpwd.png">
+<meta property="og:updated_time" content="2017-03-02T09:38:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL5.7.13 源码非编译安装">
+<meta name="twitter:description" content="###MySQL5.7下载地址
+前提：阿里云服务器是CentOS6.5版本，下载的时候看清楚Select Platform，新的MySQL有600M，比之前多出一倍。
+下载MySQL，完成解压，解压后将文件夹移到/usr/local/下#####有人推荐axel下载多线程，支持断点，但是centos下没有，需要下载成yum插件，debian系统可以直接安装。尝试下载，没有反应，可能国外服务器不稳定">
+<meta name="twitter:image" content="http://7xo7qs.com1.z0.glb.clouddn.com/mysql_data.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Grow With Time" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/assert/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">chuyuan.xu</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">一步一步向上爬</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/xuchuyuan" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/xuchuyuan" title="weibo">weibo</a>
+					        
+								<a class="douban" target="_blank" href="http://www.douban.com/people/73062008/" title="douban">douban</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xuchuyuan" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Composer/" style="font-size: 15px;">Composer</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/LINUX/" style="font-size: 10px;">LINUX</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://mdba.cn/">DBA的卢浮宫</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">chuyuan.xu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/assert/avatar.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">chuyuan.xu</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">一步一步向上爬</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/xuchuyuan" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/xuchuyuan" title="weibo">weibo</a>
+			        
+						<a class="douban" target="_blank" href="http://www.douban.com/people/73062008/" title="douban">douban</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xuchuyuan" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-MySQL-Install" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/22/MySQL-Install/" class="article-date">
+  	<time datetime="2016-07-22T02:00:00.000Z" itemprop="datePublished">2016-07-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL5.7.13 源码非编译安装
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/TECH/">TECH</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###<a href="http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.13-linux-glibc2.5-x86_64.tar.gz" target="_blank" rel="external">MySQL5.7下载地址</a></p>
+<h5 id="前提：阿里云服务器是CentOS6-5版本，下载的时候看清楚Select-Platform，新的MySQL有600M，比之前多出一倍。"><a href="#前提：阿里云服务器是CentOS6-5版本，下载的时候看清楚Select-Platform，新的MySQL有600M，比之前多出一倍。" class="headerlink" title="前提：阿里云服务器是CentOS6.5版本，下载的时候看清楚Select Platform，新的MySQL有600M，比之前多出一倍。"></a>前提：阿里云服务器是CentOS6.5版本，下载的时候看清楚Select Platform，新的MySQL有600M，比之前多出一倍。</h5><ul>
+<li><p>下载MySQL，完成解压，解压后将文件夹移到/usr/local/下<br>#####有人推荐axel下载多线程，支持断点，但是centos下没有，需要下载成yum插件，debian系统可以直接安装。尝试下载，没有反应，可能国外服务器不稳定吧，以后再试。</p>
+<pre><code class="bash">wget http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.13-linux-glibc2.5-x86_64.tar.gz
+tar -zxvf mysql-5.7.13-linux-glibc2.5-x86_64.tar.gz
+mv mysql-5.7.13-linux-glibc2.5-x86_64 /usr/local/
+</code></pre>
+<p>#####Tips:如果下载速度很慢，我是本地迅雷下载完成后通过scp方式上传到阿里云的，上传了20分钟。</p>
+</li>
+<li><p>在/usr/local/下新建一个软连接，这样以后可以安装多个MySQL实例</p>
+<pre><code class="bash">ln -s mysql-5.7.13-linux-glibc2.5-x86_64 mysql
+</code></pre>
+</li>
+<li><p>新增MySQL用户和组，一般都存在，除非服务器是新的,之前没装过MySQL 设置mysql文件夹的权限组是root<br>```<br>groupadd mysql<br>useradd mysql -g mysql</p>
+</li>
+</ul>
+<p>cd /usr/local/mysql<br>chowm -R root:mysql mysql .</p>
+<pre><code>
+- 下面是关键的一步，设置my.cnf，删除原先的配置文件
+```bash
+unlink /etc/my.cnf
+</code></pre><p>新的my.cnf 放进/etc/下</p>
+<pre><code class="bash">[client]
+user=test
+password=abcd1234_
+
+[mysqld]
+########basic settings########
+server-id = 11
+port = 3306
+user = mysql
+bind_address = 10.0.0.1
+autocommit = 0
+character_set_server=utf8mb4
+skip_name_resolve = 1
+max_connections = 800
+max_connect_errors = 1000
+datadir = /data/mysql_data
+transaction_isolation = READ-COMMITTED
+explicit_defaults_for_timestamp = 1
+join_buffer_size = 134217728
+tmp_table_size = 67108864
+tmpdir = /tmp
+max_allowed_packet = 16777216
+sql_mode = &quot;STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER&quot;
+interactive_timeout = 1800
+wait_timeout = 1800
+read_buffer_size = 16777216
+read_rnd_buffer_size = 33554432
+sort_buffer_size = 33554432
+########log settings########
+log_error = error.log
+slow_query_log = 1
+slow_query_log_file = slow.log
+log_queries_not_using_indexes = 1
+log_slow_admin_statements = 1
+log_slow_slave_statements = 1
+log_throttle_queries_not_using_indexes = 10
+expire_logs_days = 90
+long_query_time = 2
+min_examined_row_limit = 100
+########replication settings########
+master_info_repository = TABLE
+relay_log_info_repository = TABLE
+log_bin = bin.log
+sync_binlog = 1
+gtid_mode = on
+enforce_gtid_consistency = 1
+log_slave_updates
+binlog_format = row
+relay_log = relay.log
+relay_log_recovery = 1
+binlog_gtid_simple_recovery = 1
+slave_skip_errors = ddl_exist_errors
+########innodb settings########
+innodb_page_size = 8192
+innodb_buffer_pool_size = 512M
+innodb_buffer_pool_instances = 8
+innodb_buffer_pool_load_at_startup = 1
+innodb_buffer_pool_dump_at_shutdown = 1
+innodb_lru_scan_depth = 2000
+innodb_lock_wait_timeout = 5
+innodb_io_capacity = 4000
+innodb_io_capacity_max = 8000
+innodb_flush_method = O_DIRECT
+innodb_file_format = Barracuda
+innodb_file_format_max = Barracuda
+#innodb_log_group_home_dir = /redolog/
+#innodb_undo_directory = /undolog/
+innodb_undo_logs = 128
+innodb_undo_tablespaces = 3
+innodb_flush_neighbors = 0
+innodb_log_file_size = 1G
+innodb_log_buffer_size = 16777216
+innodb_purge_threads = 4
+innodb_large_prefix = 1
+innodb_thread_concurrency = 64
+innodb_print_all_deadlocks = 1
+innodb_strict_mode = 1
+innodb_sort_buffer_size = 67108864
+########semi sync replication settings########
+plugin_dir=/usr/local/mysql/lib/plugin
+plugin_load = &quot;rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so&quot;
+loose_rpl_semi_sync_master_enabled = 1
+loose_rpl_semi_sync_slave_enabled = 1
+loose_rpl_semi_sync_master_timeout = 5000
+
+[mysqld-5.7]
+innodb_buffer_pool_dump_pct = 40
+innodb_page_cleaners = 4
+innodb_undo_log_truncate = 1
+innodb_max_undo_log_size = 2G
+innodb_purge_rseg_truncate_frequency = 128
+binlog_gtid_simple_recovery=1
+log_timestamps=system
+transaction_write_set_extraction=MURMUR32
+show_compatibility_56=on
+</code></pre>
+<p>#####有几个注意的参数</p>
+<pre><code class="bash">bind_address = 10.0.0.1     自己服务器的ip地址
+datadir = /data/mysql_data   MySQL数据存放文件夹 在root下新建一个data文件夹 里面什么都不要
+#innodb_log_group_home_dir = /redolog/  这两行注释掉，不需要，如果没这两目录 会报错
+#innodb_undo_directory = /undolog/
+</code></pre>
+<ul>
+<li>初始化Mysql，完成后在datadir下有MySQL的库和相关文件(重要的有slow.log，error.log)<pre><code class="bash">cd /usr/local/mysql
+bin/mysql --initialize
+</code></pre>
+</li>
+<li><p>如果初始化成功，会看到如下文件<br><img src="http://7xo7qs.com1.z0.glb.clouddn.com/mysql_data.png" alt=""></p>
+</li>
+<li><p>如果不是以上文件，则初始化失败，查看error.log，具体分析，虽然有时候网上的回答也解决不了，只能具体问题具体分析</p>
+<h5 id="我当时也是报错了，试了很久都不行，直接把整个阿里云恢复了，还是不行，最后还是配置文件出了问题。"><a href="#我当时也是报错了，试了很久都不行，直接把整个阿里云恢复了，还是不行，最后还是配置文件出了问题。" class="headerlink" title="我当时也是报错了，试了很久都不行，直接把整个阿里云恢复了，还是不行，最后还是配置文件出了问题。"></a>我当时也是报错了，试了很久都不行，直接把整个阿里云恢复了，还是不行，最后还是配置文件出了问题。</h5></li>
+<li><p>最后一步了，把启动项放到/etc/init.d下 这样就能直接启动了(可以命名相同 也可以不同 启动名称而已)</p>
+<pre><code class="bash">cd /usr/local/mysql
+mv support-files/mysql.server /etc/init.d/mysql.server
+</code></pre>
+</li>
+<li><p>尝试启动MySQL，启动成功。可以连接了 回车输入初始密码<br>#####MySQL5.7初始化成功后是有默认密码的，这和之前的版本都不一样，初始密码在error.log中，就是最后那一串字符<br><img src="http://7xo7qs.com1.z0.glb.clouddn.com/initpwd.png" alt=""><br>```bash<br>/etc/init.d/mysql.server start<br>Starting MySQL..                                           [  OK  ]</p>
+</li>
+</ul>
+<p>/usr/local/mysql/bin/mysql -uroot -p<br>```</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/01/Yum/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Question - Yum No module named yum
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/17/Hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">搭建Hexo</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 chuyuan.xu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
